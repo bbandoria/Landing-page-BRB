@@ -17,13 +17,13 @@ const faqs = [
 
 <section id="faq" class="section faq">
   <div class="container faq__inner">
-    <p class="eyebrow">Ainda com dúvida?</p>
-    <h2 class="faq__title">A gente responde.</h2>
+    <p class="eyebrow" data-reveal>Ainda com dúvida?</p>
+    <h2 class="faq__title" data-reveal style="transition-delay: 60ms">A gente responde.</h2>
 
     <div class="faq__list">
       {
-        faqs.map((item) => (
-          <details class="faq-item">
+        faqs.map((item, i) => (
+          <details class="faq-item" data-reveal style={`transition-delay:${i * 70}ms`}>
             <summary class="faq-item__q">{item.q}</summary>
             <p class="faq-item__a">{item.a}</p>
           </details>

@@ -1,0 +1,76 @@
+---
+const ferramentas = [
+  "Meta Ads",
+  "Google Ads",
+  "TikTok Ads",
+  "WhatsApp Business",
+  "Google Analytics 4",
+  "CRM BRB",
+] as const;
+---
+
+<section class="ferramentas">
+  <div class="container">
+    <p class="ferramentas__label" data-reveal>Operamos com as principais plataformas do mercado</p>
+    <ul class="ferramentas__list">
+      {
+        ferramentas.map((f, i) => (
+          <li data-reveal style={`transition-delay:${i * 60}ms`}>
+            <span class={f === "CRM BRB" ? "ferramentas__pill ferramentas__pill--brand" : "ferramentas__pill"}>{f}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ferramentas {
+    background: var(--bg-raised);
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
+    border-bottom: 1px solid rgba(11, 23, 48, 0.06);
+  }
+
+  .ferramentas__label {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .ferramentas__list {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .ferramentas__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    background: var(--bg);
+    border: 1px solid rgba(11, 23, 48, 0.08);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .ferramentas__pill:hover {
+    transform: translateY(-2px);
+    border-color: var(--blue);
+  }
+
+  .ferramentas__pill--brand {
+    background: var(--brand-gradient);
+    color: var(--white);
+    border-color: transparent;
+  }
+</style>

@@ -1,56 +1,35 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
 interface Props {
-  variant?: "light" | "dark";
+  size?: "sm" | "md";
   class?: string;
 }
 
-const { variant = "light", class: className = "" } = Astro.props;
+const { size = "md", class: className = "" } = Astro.props;
 ---
 
-<span class={`logo logo--${variant} ${className}`}>
-  <span class="logo__mark">BRB</span>
-  <span class="logo__sub">Agência Digital</span>
+<span class={`logo logo--${size} ${className}`}>
+  <Image src={logo} alt="BRB Agência Digital" width={280} height={280} />
 </span>
 
 <style>
   .logo {
     display: inline-flex;
-    flex-direction: column;
-    line-height: 1;
-    gap: 0.2rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 10px;
+    padding: 0.4rem 0.7rem;
+    line-height: 0;
   }
 
-  .logo__mark {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
+  .logo :global(img) {
+    height: 1.9rem;
+    width: auto;
   }
 
-  .logo--light .logo__mark {
-    color: var(--white);
-  }
-
-  .logo--dark .logo__mark {
-    background: var(--brand-gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .logo__sub {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-
-  .logo--light .logo__sub {
-    color: rgba(255, 255, 255, 0.75);
-  }
-
-  .logo--dark .logo__sub {
-    color: var(--gray);
+  .logo--sm :global(img) {
+    height: 1.5rem;
   }
 </style>

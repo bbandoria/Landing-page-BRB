@@ -32,13 +32,13 @@ const servicos = [
 
 <section id="servicos" class="section servicos">
   <div class="container">
-    <p class="eyebrow">O que fazemos</p>
-    <h2 class="servicos__title">Tudo que sua empresa precisa pra vender mais, num só lugar</h2>
+    <p class="eyebrow" data-reveal>O que fazemos</p>
+    <h2 class="servicos__title" data-reveal style="transition-delay: 60ms">Tudo que sua empresa precisa pra vender mais, num só lugar</h2>
 
     <div class="servicos__grid">
       {
-        servicos.map((s) => (
-          <article class="servico-card">
+        servicos.map((s, i) => (
+          <article class="servico-card" data-reveal style={`transition-delay:${i * 70}ms`}>
             <span class="servico-card__icon" set:html={icons[s.icon]} />
             <h3 class="servico-card__title">{s.title}</h3>
             <p class="servico-card__body">{s.body}</p>
@@ -69,6 +69,13 @@ const servicos = [
     padding: 1.75rem;
     border: 1px solid rgba(11, 23, 48, 0.06);
     box-shadow: 0 12px 30px -18px rgba(11, 23, 48, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .servico-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(30, 95, 184, 0.35);
+    box-shadow: 0 22px 40px -18px rgba(11, 23, 48, 0.35);
   }
 
   .servico-card__icon {
@@ -81,6 +88,11 @@ const servicos = [
     background: var(--brand-gradient);
     color: var(--white);
     padding: 0.55rem;
+    transition: transform 0.2s ease;
+  }
+
+  .servico-card:hover .servico-card__icon {
+    transform: scale(1.08);
   }
 
   .servico-card__icon :global(svg) {

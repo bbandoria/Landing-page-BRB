@@ -146,6 +146,20 @@ button {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Scroll-reveal (see Interactions.astro). Only hides content once JS
+   confirmed it can run (html.js, set inline in Layout.astro) — without
+   JS, or before it runs, content stays visible by default. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -154,5 +168,10 @@ button {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -5,18 +5,21 @@ const diferenciais = [
   {
     icon: "ads",
     stat: "+R$6 milhões",
+    counterTo: 6,
     label: "investidos em anúncios geridos",
     body: "Experiência prática, não teoria.",
   },
   {
     icon: "tracking",
     stat: "Trackeamento próprio",
+    counterTo: null,
     label: "estrutura de dados avançada",
     body: "Decisão baseada em dado confiável, não em achismo de dashboard genérico.",
   },
   {
     icon: "crm",
     stat: "CRM profissional",
+    counterTo: null,
     label: "sistema próprio da BRB",
     body: "O lead entra pelo anúncio e sai fechado, sem perder no caminho.",
   },
@@ -26,18 +29,24 @@ const diferenciais = [
 <section id="diferencial" class="section diferencial">
   <div class="diferencial__glow" aria-hidden="true"></div>
   <div class="container">
-    <p class="eyebrow eyebrow--light">Por que a BRB</p>
-    <h2 class="diferencial__title">
+    <p class="eyebrow eyebrow--light" data-reveal>Por que a BRB</p>
+    <h2 class="diferencial__title" data-reveal style="transition-delay: 60ms">
       A maioria das agências entrega anúncio.<br />
       A BRB entrega o funil inteiro.
     </h2>
 
     <div class="diferencial__grid">
       {
-        diferenciais.map((d) => (
-          <div class="diferencial-item">
+        diferenciais.map((d, i) => (
+          <div class="diferencial-item" data-reveal style={`transition-delay:${i * 80}ms`}>
             <span class="diferencial-item__icon" set:html={icons[d.icon]} />
-            <strong class="diferencial-item__stat">{d.stat}</strong>
+            {d.counterTo ? (
+              <strong class="diferencial-item__stat" data-counter data-counter-to={d.counterTo} data-counter-prefix="+R$" data-counter-suffix=" milhões">
+                {d.stat}
+              </strong>
+            ) : (
+              <strong class="diferencial-item__stat">{d.stat}</strong>
+            )}
             <span class="diferencial-item__label">{d.label}</span>
             <p class="diferencial-item__body">{d.body}</p>
           </div>
@@ -86,6 +95,12 @@ const diferenciais = [
     flex-direction: column;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .diferencial-item:hover {
+    border-top-color: var(--gold);
+    transform: translateY(-4px);
   }
 
   .diferencial-item__icon {

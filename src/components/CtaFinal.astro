@@ -4,14 +4,15 @@ import { icons } from "./icons";
 ---
 
 <section id="contato" class="section ctafinal">
+  <div class="ctafinal__dots" aria-hidden="true"></div>
   <div class="ctafinal__glow" aria-hidden="true"></div>
   <div class="container ctafinal__inner">
-    <h2 class="ctafinal__title">Chega de investir às cegas</h2>
-    <p class="ctafinal__body">
+    <h2 class="ctafinal__title" data-reveal>Chega de investir às cegas</h2>
+    <p class="ctafinal__body" data-reveal style="transition-delay: 60ms">
       Fale com a gente e descubra como tráfego pago, trackeamento avançado e CRM
       profissional podem transformar visita em venda pro seu negócio.
     </p>
-    <a class="btn btn--primary ctafinal__cta" href={whatsappLink("Olá! Quero vender mais com a BRB.")} target="_blank" rel="noopener noreferrer">
+    <a class="btn btn--primary ctafinal__cta" data-reveal style="transition-delay: 120ms" href={whatsappLink("Olá! Quero vender mais com a BRB.")} target="_blank" rel="noopener noreferrer">
       <Fragment set:html={icons.whatsapp} />
       Quero vender mais
     </a>
@@ -32,6 +33,15 @@ import { icons } from "./icons";
     inset: -30% 20% auto 20%;
     height: 80%;
     background: radial-gradient(closest-side, rgba(255, 255, 255, 0.25), transparent);
+    pointer-events: none;
+  }
+
+  .ctafinal__dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
     pointer-events: none;
   }
 
