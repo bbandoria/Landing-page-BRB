@@ -1,13 +1,17 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/logo.png";
+import logoOnLight from "../assets/logo-onlight.png";
+import logoOnDark from "../assets/logo-ondark.png";
 
 interface Props {
   size?: "sm" | "md" | "lg";
+  /** "onlight" = subtítulo escuro, para fundo claro. "ondark" = subtítulo branco, para fundo escuro. */
+  tone?: "onlight" | "ondark";
   class?: string;
 }
 
-const { size = "md", class: className = "" } = Astro.props;
+const { size = "md", tone = "ondark", class: className = "" } = Astro.props;
+const logo = tone === "onlight" ? logoOnLight : logoOnDark;
 ---
 
 <span class={`logo logo--${size} ${className}`}>
@@ -35,6 +39,6 @@ const { size = "md", class: className = "" } = Astro.props;
   }
 
   .logo--lg {
-    height: 3.4rem;
+    height: 3.9rem;
   }
 </style>
