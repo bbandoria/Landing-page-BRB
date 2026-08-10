@@ -28,9 +28,6 @@ const { size = "md", class: className = "" } = Astro.props;
     width: 100%;
     object-fit: cover;
     object-position: center 49%;
-    /* Soft white halo so the logo reads on dark brand backgrounds
-       without a solid background chip (transparent PNG stays transparent). */
-    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9)) drop-shadow(0 1px 10px rgba(255, 255, 255, 0.55));
   }
 
   .logo--sm {

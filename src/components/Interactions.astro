@@ -6,6 +6,13 @@
     window.addEventListener("scroll", setScrolled, { passive: true });
   }
 
+  const floatingWpp = document.querySelector<HTMLElement>(".floating-wpp");
+  if (floatingWpp) {
+    const setFloatingVisible = () => floatingWpp.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.6);
+    setFloatingVisible();
+    window.addEventListener("scroll", setFloatingVisible, { passive: true });
+  }
+
   const prefersReduced =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window);
 
