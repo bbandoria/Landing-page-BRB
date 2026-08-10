@@ -26,15 +26,12 @@ import { whatsappLink } from "../lib/contact";
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(11, 23, 48, 0.8);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: var(--ink);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
   }
 
   .header.is-scrolled {
-    background: rgba(11, 23, 48, 0.94);
     box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.5);
   }
 
