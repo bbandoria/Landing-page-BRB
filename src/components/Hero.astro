@@ -152,7 +152,7 @@ import { icons } from "./icons";
 
   .hero__sub {
     margin-top: 1.5rem;
-    max-width: 46ch;
+    max-width: min(46ch, 100%);
     font-size: clamp(1.05rem, 2vw, 1.2rem);
     color: rgba(255, 255, 255, 0.88);
   }
@@ -375,12 +375,34 @@ import { icons } from "./icons";
       grid-template-columns: 1fr;
     }
 
+    .mockup {
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding-block: 2rem 3rem;
+    }
+
     .hero__visual {
-      order: -1;
+      margin-top: 2.5rem;
     }
 
     .mockup {
-      max-width: 320px;
+      max-width: 280px;
+      padding: 1.15rem;
+    }
+
+    .mockup__chart {
+      height: 56px;
+    }
+
+    .hero__cta {
+      white-space: normal;
+      text-align: center;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.3rem;
     }
   }
 
