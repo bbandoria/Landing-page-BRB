@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import crmScreenshot from "../assets/crm-screenshot.jpg";
 ---
 
 <section class="section provasocial">
@@ -8,6 +10,17 @@
       <strong data-counter data-counter-to="6" data-counter-prefix="+R$" data-counter-suffix=" milhões">+R$6 milhões</strong> investidos em anúncios geridos pela nossa equipe,
       com foco em <strong>Ecommerce</strong> e <strong>Negócio Local</strong>.
     </p>
+
+    <figure class="provasocial__proof" data-reveal style="transition-delay: 120ms">
+      <div class="provasocial__frame">
+        <div class="provasocial__framebar">
+          <span></span><span></span><span></span>
+          <span class="provasocial__framebar-label">CRM BRB · funil de vendas real</span>
+        </div>
+        <Image src={crmScreenshot} alt="Painel do CRM próprio da BRB, com o funil de vendas real da agência" width={1200} loading="lazy" />
+      </div>
+      <figcaption>Nosso CRM, em uso real todos os dias. Dados de clientes borrados por privacidade.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -20,7 +33,7 @@
   }
 
   .provasocial__inner {
-    max-width: 720px;
+    max-width: 860px;
   }
 
   .provasocial__body {
@@ -31,5 +44,52 @@
 
   .provasocial__body strong {
     color: var(--blue);
+  }
+
+  .provasocial__proof {
+    margin: 2.5rem 0 0;
+  }
+
+  .provasocial__frame {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 60px -24px rgba(11, 23, 48, 0.35);
+    border: 1px solid rgba(11, 23, 48, 0.08);
+  }
+
+  .provasocial__framebar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(11, 23, 48, 0.08);
+  }
+
+  .provasocial__framebar span:not(.provasocial__framebar-label) {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: rgba(11, 23, 48, 0.15);
+  }
+
+  .provasocial__framebar-label {
+    margin-left: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--gray);
+  }
+
+  .provasocial__frame :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .provasocial__proof figcaption {
+    margin-top: 0.85rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+    text-align: center;
   }
 </style>
