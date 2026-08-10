@@ -7,15 +7,21 @@ const ferramentas = [
   "Google Analytics 4",
   "CRM BRB",
 ] as const;
+
+// Duplicated once so the marquee track can loop seamlessly at -50%.
+const track = [...ferramentas, ...ferramentas];
 ---
 
 <section class="ferramentas">
   <div class="container">
     <p class="ferramentas__label" data-reveal>Operamos com as principais plataformas do mercado</p>
-    <ul class="ferramentas__list">
+  </div>
+
+  <div class="ferramentas__viewport" data-reveal style="transition-delay: 60ms">
+    <ul class="ferramentas__track">
       {
-        ferramentas.map((f, i) => (
-          <li data-reveal style={`transition-delay:${i * 60}ms`}>
+        track.map((f) => (
+          <li>
             <span class={f === "CRM BRB" ? "ferramentas__pill ferramentas__pill--brand" : "ferramentas__pill"}>{f}</span>
           </li>
         ))
@@ -40,14 +46,34 @@ const ferramentas = [
     color: var(--gray);
   }
 
-  .ferramentas__list {
-    margin: 1.5rem 0 0;
+  .ferramentas__viewport {
+    margin-top: 1.5rem;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+
+  .ferramentas__track {
+    margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: max-content;
     gap: 0.75rem;
+    animation: marquee 22s linear infinite;
+  }
+
+  .ferramentas__viewport:hover .ferramentas__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   .ferramentas__pill {
@@ -60,6 +86,7 @@ const ferramentas = [
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--ink);
+    white-space: nowrap;
     transition: transform 0.15s ease, border-color 0.15s ease;
   }
 
@@ -72,5 +99,23 @@ const ferramentas = [
     background: var(--brand-gradient);
     color: var(--white);
     border-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ferramentas__viewport {
+      overflow: visible;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+    .ferramentas__track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ferramentas__track li:nth-child(n + 7) {
+      display: none;
+    }
   }
 </style>

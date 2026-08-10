@@ -27,6 +27,7 @@ const diferenciais = [
 ---
 
 <section id="diferencial" class="section diferencial">
+  <div class="diferencial__dots" aria-hidden="true"></div>
   <div class="diferencial__glow" aria-hidden="true"></div>
   <div class="container">
     <p class="eyebrow eyebrow--light" data-reveal>Por que a BRB</p>
@@ -62,6 +63,15 @@ const diferenciais = [
     background: var(--ink);
     color: var(--white);
     overflow: hidden;
+  }
+
+  .diferencial__dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse at 30% 30%, black 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .diferencial__glow {

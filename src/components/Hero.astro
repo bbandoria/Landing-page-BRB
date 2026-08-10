@@ -41,26 +41,26 @@ import { icons } from "./icons";
         <div class="mockup__stats">
           <div class="mockup__stat">
             <span class="mockup__stat-label">ROAS médio</span>
-            <strong class="mockup__stat-value">5.8x</strong>
+            <strong class="mockup__stat-value" data-counter data-counter-to="5.8" data-counter-decimals="1" data-counter-suffix="x">5.8x</strong>
           </div>
           <div class="mockup__stat">
             <span class="mockup__stat-label">Leads hoje</span>
-            <strong class="mockup__stat-value">47</strong>
+            <strong class="mockup__stat-value" data-counter data-counter-to="47">47</strong>
           </div>
         </div>
 
         <div class="mockup__chart" aria-hidden="true">
-          <span style="--h:38%"></span>
-          <span style="--h:52%"></span>
-          <span style="--h:46%"></span>
-          <span style="--h:70%"></span>
-          <span style="--h:58%"></span>
-          <span style="--h:88%"></span>
-          <span style="--h:74%"></span>
+          <span style="--h:38%; --d:0ms"></span>
+          <span style="--h:52%; --d:60ms"></span>
+          <span style="--h:46%; --d:120ms"></span>
+          <span style="--h:70%; --d:180ms"></span>
+          <span style="--h:58%; --d:240ms"></span>
+          <span style="--h:88%; --d:300ms"></span>
+          <span style="--h:74%; --d:360ms"></span>
         </div>
 
         <ul class="mockup__feed">
-          <li><span class="mockup__dot"></span> Novo lead qualificado <em>agora</em></li>
+          <li><span class="mockup__dot mockup__dot--live"></span> Novo lead qualificado <em>agora</em></li>
           <li><span class="mockup__dot mockup__dot--gold"></span> Campanha otimizada <em>2 min</em></li>
         </ul>
       </div>
@@ -72,9 +72,20 @@ import { icons } from "./icons";
   .hero {
     position: relative;
     background: var(--brand-gradient-diagonal);
+    background-size: 220% 220%;
+    animation: heroGradient 16s ease-in-out infinite alternate;
     color: var(--white);
     overflow: hidden;
     padding-block: clamp(4.5rem, 12vw, 7rem) clamp(4rem, 10vw, 6rem);
+  }
+
+  @keyframes heroGradient {
+    0% {
+      background-position: 10% 20%;
+    }
+    100% {
+      background-position: 90% 80%;
+    }
   }
 
   .hero__glow {
@@ -90,6 +101,7 @@ import { icons } from "./icons";
     width: 46%;
     aspect-ratio: 1;
     background: radial-gradient(closest-side, rgba(43, 184, 217, 0.5), transparent);
+    animation: driftA 11s ease-in-out infinite alternate;
   }
 
   .hero__glow--b {
@@ -98,6 +110,19 @@ import { icons } from "./icons";
     width: 40%;
     aspect-ratio: 1;
     background: radial-gradient(closest-side, rgba(232, 163, 61, 0.35), transparent);
+    animation: driftB 13s ease-in-out infinite alternate;
+  }
+
+  @keyframes driftA {
+    to {
+      transform: translate(6%, 8%);
+    }
+  }
+
+  @keyframes driftB {
+    to {
+      transform: translate(-7%, -6%);
+    }
   }
 
   .hero__inner {
@@ -140,9 +165,35 @@ import { icons } from "./icons";
     gap: 1.5rem;
   }
 
+  .hero__cta {
+    position: relative;
+  }
+
   .hero__cta :global(svg) {
     width: 1.15rem;
     height: 1.15rem;
+  }
+
+  .hero__cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    opacity: 0;
+    animation: ctaPulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes ctaPulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
   }
 
   .hero__proof {
@@ -255,6 +306,16 @@ import { icons } from "./icons";
     height: var(--h);
     border-radius: 4px;
     background: var(--brand-gradient);
+    transition: height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d);
+  }
+
+  .js .hero__visual .mockup__chart span {
+    height: 0;
+  }
+
+  .js .hero__visual.is-visible .mockup__chart span {
+    height: var(--h);
   }
 
   .mockup__feed {
@@ -293,6 +354,20 @@ import { icons } from "./icons";
 
   .mockup__dot--gold {
     background: var(--gold);
+  }
+
+  .mockup__dot--live {
+    animation: dotPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(43, 184, 217, 0.45);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(43, 184, 217, 0);
+    }
   }
 
   @media (max-width: 900px) {

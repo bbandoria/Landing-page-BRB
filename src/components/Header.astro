@@ -6,7 +6,7 @@ import { whatsappLink } from "../lib/contact";
 <header class="header">
   <div class="container header__inner">
     <a href="#hero" class="header__logo" aria-label="BRB Agência Digital — voltar ao topo">
-      <Logo />
+      <Logo size="lg" />
     </a>
 
     <nav class="header__nav" aria-label="Navegação principal">
@@ -26,10 +26,16 @@ import { whatsappLink } from "../lib/contact";
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(11, 23, 48, 0.72);
+    background: rgba(11, 23, 48, 0.32);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .header.is-scrolled {
+    background: rgba(11, 23, 48, 0.88);
+    box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.5);
   }
 
   .header__inner {
