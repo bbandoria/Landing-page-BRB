@@ -1,0 +1,69 @@
+---
+import Logo from "./Logo.astro";
+import { whatsappLink } from "../lib/contact";
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#hero" class="header__logo" aria-label="BRB Agência Digital — voltar ao topo">
+      <Logo variant="light" />
+    </a>
+
+    <nav class="header__nav" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#diferencial">Diferencial</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+
+    <a class="btn btn--primary header__cta" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+      Falar no WhatsApp
+    </a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(11, 23, 48, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.85rem;
+  }
+
+  .header__nav {
+    display: flex;
+    gap: 2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .header__nav a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.15s ease;
+  }
+
+  .header__nav a:hover {
+    color: var(--white);
+  }
+
+  .header__cta {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .header__nav {
+      display: none;
+    }
+  }
+</style>

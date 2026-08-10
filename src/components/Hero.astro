@@ -1,0 +1,109 @@
+---
+import { whatsappLink } from "../lib/contact";
+import { icons } from "./icons";
+---
+
+<section id="hero" class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <p class="eyebrow eyebrow--light">Tráfego pago · Trackeamento · CRM</p>
+
+    <h1 class="hero__headline">
+      Você continua fazendo as mesmas coisas <span class="hero__headline-accent">e esperando resultados diferentes?</span>
+    </h1>
+
+    <p class="hero__sub">
+      A BRB junta tráfego pago, trackeamento avançado e CRM próprio num só lugar —
+      pra sua empresa vender mais com dado real, não achismo.
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary hero__cta" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+        <Fragment set:html={icons.whatsapp} />
+        Falar com um especialista agora
+      </a>
+      <div class="hero__proof">
+        <strong>+R$6 milhões</strong>
+        <span>investidos em anúncios geridos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background: var(--brand-gradient-diagonal);
+    color: var(--white);
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 12vw, 8rem) clamp(4rem, 10vw, 6rem);
+  }
+
+  .hero__glow {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 60%;
+    background: radial-gradient(closest-side, rgba(43, 184, 217, 0.45), transparent);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    max-width: 900px;
+  }
+
+  .eyebrow--light {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero__headline {
+    margin-top: 1rem;
+    font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+    color: var(--white);
+  }
+
+  .hero__headline-accent {
+    background: linear-gradient(100deg, #fff 0%, var(--gold) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__sub {
+    margin-top: 1.5rem;
+    max-width: 46ch;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .hero__actions {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero__cta :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .hero__proof {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+
+  .hero__proof strong {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.15rem;
+  }
+
+  .hero__proof span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+</style>

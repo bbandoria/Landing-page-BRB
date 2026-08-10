@@ -1,0 +1,100 @@
+---
+const faqs = [
+  {
+    q: "Já tentei tráfego pago e não funcionou. Por que seria diferente agora?",
+    a: "Na maioria das vezes o problema não é o anúncio, é a falta de trackeamento avançado. Sem dado certo, a verba é otimizada às cegas. É exatamente esse ponto que resolvemos antes de qualquer campanha.",
+  },
+  {
+    q: "Agência de marketing é cara e eu não sei se vejo retorno.",
+    a: "A gente não pede pra você confiar na palavra — mostra o histórico. Mais de R$6 milhões já investidos em anúncios geridos por nós, com resultado real pra Ecommerce e Negócio Local.",
+  },
+  {
+    q: "Eu só preciso de anúncio, não de site ou CRM.",
+    a: "Anúncio sem uma base digital boa e um funil organizado perde lead no meio do caminho. Por isso trabalhamos o pacote junto — cada peça sustenta a outra.",
+  },
+] as const;
+---
+
+<section id="faq" class="section faq">
+  <div class="container faq__inner">
+    <p class="eyebrow">Ainda com dúvida?</p>
+    <h2 class="faq__title">A gente responde.</h2>
+
+    <div class="faq__list">
+      {
+        faqs.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-item__q">{item.q}</summary>
+            <p class="faq-item__a">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--bg-raised);
+  }
+
+  .faq__inner {
+    max-width: 760px;
+  }
+
+  .faq__title {
+    margin-top: 0.5rem;
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  }
+
+  .faq__list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid rgba(11, 23, 48, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 1.1rem 1.4rem;
+  }
+
+  .faq-item[open] {
+    border-color: var(--blue);
+  }
+
+  .faq-item__q {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.05rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .faq-item__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item__q::after {
+    content: "+";
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-item__q::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-item__a {
+    margin-top: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+</style>

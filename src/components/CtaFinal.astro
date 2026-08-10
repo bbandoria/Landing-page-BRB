@@ -1,0 +1,62 @@
+---
+import { whatsappLink } from "../lib/contact";
+import { icons } from "./icons";
+---
+
+<section id="contato" class="section ctafinal">
+  <div class="ctafinal__glow" aria-hidden="true"></div>
+  <div class="container ctafinal__inner">
+    <h2 class="ctafinal__title">Chega de investir às cegas</h2>
+    <p class="ctafinal__body">
+      Fale com a gente e descubra como tráfego pago, trackeamento avançado e CRM
+      profissional podem transformar visita em venda pro seu negócio.
+    </p>
+    <a class="btn btn--primary ctafinal__cta" href={whatsappLink("Olá! Quero vender mais com a BRB.")} target="_blank" rel="noopener noreferrer">
+      <Fragment set:html={icons.whatsapp} />
+      Quero vender mais
+    </a>
+  </div>
+</section>
+
+<style>
+  .ctafinal {
+    position: relative;
+    background: var(--brand-gradient);
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .ctafinal__glow {
+    position: absolute;
+    inset: -30% 20% auto 20%;
+    height: 80%;
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.25), transparent);
+    pointer-events: none;
+  }
+
+  .ctafinal__inner {
+    position: relative;
+    max-width: 640px;
+  }
+
+  .ctafinal__title {
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    color: var(--white);
+  }
+
+  .ctafinal__body {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .ctafinal__cta {
+    margin-top: 2.25rem;
+  }
+
+  .ctafinal__cta :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import { icons } from "./icons";
+
+const servicos = [
+  {
+    icon: "ads",
+    title: "Tráfego pago",
+    body: "Anúncios que geram venda, não só clique. Gestão orientada a resultado, não a métrica de vaidade.",
+  },
+  {
+    icon: "tracking",
+    title: "Trackeamento avançado",
+    body: "Decisão com dado real. Estrutura de rastreamento que mostra o que está funcionando — e o que está queimando verba.",
+  },
+  {
+    icon: "crm",
+    title: "CRM profissional",
+    body: "Nenhum lead se perde no meio do caminho. Sistema próprio pra organizar e converter seu funil, do contato ao fechamento.",
+  },
+  {
+    icon: "social",
+    title: "Social media",
+    body: "Presença que sustenta a campanha. Suas redes trabalham junto com o anúncio, não contra ele.",
+  },
+  {
+    icon: "dev",
+    title: "Sites e aplicativos",
+    body: "Base digital pronta pra converter. Rápida, profissional, feita pra transformar visita em contato.",
+  },
+] as const;
+---
+
+<section id="servicos" class="section servicos">
+  <div class="container">
+    <p class="eyebrow">O que fazemos</p>
+    <h2 class="servicos__title">Tudo que sua empresa precisa pra vender mais, num só lugar</h2>
+
+    <div class="servicos__grid">
+      {
+        servicos.map((s) => (
+          <article class="servico-card">
+            <span class="servico-card__icon" set:html={icons[s.icon]} />
+            <h3 class="servico-card__title">{s.title}</h3>
+            <p class="servico-card__body">{s.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .servicos__title {
+    margin-top: 0.75rem;
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+    max-width: 20ch;
+  }
+
+  .servicos__grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .servico-card {
+    background: var(--bg-raised);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    border: 1px solid rgba(11, 23, 48, 0.06);
+    box-shadow: 0 12px 30px -18px rgba(11, 23, 48, 0.25);
+  }
+
+  .servico-card__icon {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--brand-gradient);
+    color: var(--white);
+    padding: 0.55rem;
+  }
+
+  .servico-card__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .servico-card__title {
+    margin-top: 1.25rem;
+    font-size: 1.15rem;
+  }
+
+  .servico-card__body {
+    margin-top: 0.6rem;
+    color: var(--gray);
+    font-size: 0.98rem;
+  }
+</style>

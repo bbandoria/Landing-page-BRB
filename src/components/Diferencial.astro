@@ -1,0 +1,120 @@
+---
+import { icons } from "./icons";
+
+const diferenciais = [
+  {
+    icon: "ads",
+    stat: "+R$6 milhões",
+    label: "investidos em anúncios geridos",
+    body: "Experiência prática, não teoria.",
+  },
+  {
+    icon: "tracking",
+    stat: "Trackeamento próprio",
+    label: "estrutura de dados avançada",
+    body: "Decisão baseada em dado confiável, não em achismo de dashboard genérico.",
+  },
+  {
+    icon: "crm",
+    stat: "CRM profissional",
+    label: "sistema próprio da BRB",
+    body: "O lead entra pelo anúncio e sai fechado, sem perder no caminho.",
+  },
+] as const;
+---
+
+<section id="diferencial" class="section diferencial">
+  <div class="diferencial__glow" aria-hidden="true"></div>
+  <div class="container">
+    <p class="eyebrow eyebrow--light">Por que a BRB</p>
+    <h2 class="diferencial__title">
+      A maioria das agências entrega anúncio.<br />
+      A BRB entrega o funil inteiro.
+    </h2>
+
+    <div class="diferencial__grid">
+      {
+        diferenciais.map((d) => (
+          <div class="diferencial-item">
+            <span class="diferencial-item__icon" set:html={icons[d.icon]} />
+            <strong class="diferencial-item__stat">{d.stat}</strong>
+            <span class="diferencial-item__label">{d.label}</span>
+            <p class="diferencial-item__body">{d.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .diferencial {
+    position: relative;
+    background: var(--ink);
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .diferencial__glow {
+    position: absolute;
+    inset: 0;
+    background: var(--brand-gradient-diagonal);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .diferencial .container {
+    position: relative;
+  }
+
+  .diferencial__title {
+    margin-top: 0.75rem;
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+    max-width: 26ch;
+    color: var(--white);
+  }
+
+  .diferencial__grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .diferencial-item {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .diferencial-item__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--gold);
+  }
+
+  .diferencial-item__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .diferencial-item__stat {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
+
+  .diferencial-item__label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .diferencial-item__body {
+    margin-top: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+</style>

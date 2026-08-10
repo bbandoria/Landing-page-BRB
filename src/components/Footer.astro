@@ -1,0 +1,57 @@
+---
+import Logo from "./Logo.astro";
+import { whatsappLink } from "../lib/contact";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <a href="#hero" aria-label="BRB Agência Digital — voltar ao topo">
+      <Logo variant="light" />
+    </a>
+
+    <div class="footer__links">
+      <a href="https://www.instagram.com/brbagenciadigital/" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+
+    <p class="footer__copy">&copy; {year} BRB Agência Digital. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.7);
+    padding-block: 3rem;
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 1.5rem;
+    font-weight: 600;
+  }
+
+  .footer__links a:hover {
+    color: var(--white);
+  }
+
+  .footer__copy {
+    width: 100%;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+</style>
