@@ -11,9 +11,22 @@ const {
   description = "Agência especializada em Ecommerce e Negócio Local. Mais de R$6 milhões investidos em anúncios, trackeamento avançado e CRM próprio. Fale com a gente.",
 } = Astro.props;
 
-// TODO: defina `site` em astro.config.mjs quando o domínio final for escolhido
-// para que og:image e og:url virem URLs absolutas (exigido por WhatsApp/Instagram/etc).
 const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url.origin).toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "BRB Agência Digital",
+  description,
+  url: (Astro.site ?? Astro.url.origin).toString(),
+  image: ogImage,
+  telephone: "+5519999353218",
+  areaServed: "BR",
+  sameAs: ["https://www.instagram.com/brbagenciadigital/"],
+};
 ---
 
 <!doctype html>
@@ -24,6 +37,7 @@ const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url.origin).toStrin
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -42,11 +56,33 @@ const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url.origin).toStrin
 
     <meta name="theme-color" content="#1b2e6e" />
 
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    {gtmId && (
+      <script is:inline define:vars={{ gtmId }}>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", gtmId);
+      </script>
+    )}
+
     <script is:inline>
       document.documentElement.classList.add("js");
     </script>
   </head>
   <body>
+    {gtmId && (
+      <noscript
+        set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
+      />
+    )}
     <slot />
   </body>
 </html>

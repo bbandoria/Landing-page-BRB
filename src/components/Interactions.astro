@@ -1,4 +1,26 @@
 <script>
+  declare global {
+    interface Window {
+      dataLayer: Record<string, unknown>[];
+    }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+
+  document.addEventListener("click", (event) => {
+    const link = (event.target as HTMLElement)?.closest<HTMLAnchorElement>("a[href]");
+    if (!link) return;
+
+    if (link.href.startsWith("https://wa.me/")) {
+      window.dataLayer.push({
+        event: "whatsapp_click",
+        cta_location: link.closest("[data-cta-section]")?.getAttribute("data-cta-section") ?? link.className,
+      });
+    } else if (link.href.includes("instagram.com")) {
+      window.dataLayer.push({ event: "instagram_click" });
+    }
+  });
+
   const header = document.querySelector<HTMLElement>(".header");
   if (header) {
     const setScrolled = () => header.classList.toggle("is-scrolled", window.scrollY > 12);
